@@ -27,7 +27,10 @@ class Library{
 
         void issueBook(String book){
             boolean found = false;
-            for(int i = 0; i<this.availableBooks.length; i++){
+            for(int i = 0; i<this.availableBooks.length; i++) {
+                if (book == this.issuedBooks[i]){
+                    System.out.println("the book has already been issued");
+                }
                 if(book == this.availableBooks[i]){
 
                     //remove the book from available books

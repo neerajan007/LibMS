@@ -27,8 +27,8 @@ class Library{
 
         void issueBook(String book){
             boolean issued = false;
-            for(int i = 0; i<this.issuedBooks.length; i++) {
-                if (book .equals(this.issuedBooks[i]) ){
+            for(String bo: this.issuedBooks) {
+                if (book .equals(bo)){
                     System.out.println("books has already been issued please come after 5 days");
                     issued = true;
                 }

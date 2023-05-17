@@ -18,101 +18,51 @@ class Library{
         void showAvailableBooks(){
             System.out.println("The available books are: ");
             for (String book : this.availableBooks){
-                if(book == null) break;
+                if(book == null){
+                    continue;
+                }
                 System.out.println("* " + book);
             }
         }
 
-        //issuing book
-
         void issueBook(String book){
-            boolean issued = false;
-            for(String bo: this.issuedBooks) {
-                if (book .equals(bo)){
-                    System.out.println("books has already been issued please come after 5 days");
-                    issued = true;
-                }
-            }
-            if(!issued) {
-                boolean found = false;
-                for (int i = 0; i < this.availableBooks.length; i++){
-                    if (book .equals(this.availableBooks[i])) {
-                        System.out.println(book + " has been issued");
-                        //remove the book from available books
-                        for (int j = i; j < this.availableBooks.length -1; j++) {
-                            this.availableBooks[j] = this.availableBooks[j+1];
-                        }
-                        this.numAvailableBooks--;
+            boolean found = false;
+            for(int i = 0; i<this.availableBooks.length; i++){
+                if(book == this.availableBooks[i]){
 
-                        //adding book into issued book
-                        this.issuedBooks[this.numIssuedBooks] = book;
-                        numIssuedBooks++;
-
-                        //notifying the book has been issued
-
-                        //found the book?
-                        found = true;
-                        break;
+                    //remove the book from available books
+                    for (int j = i; j<this.availableBooks.length-1; j++){
+                        this.availableBooks[j] =this.availableBooks[j+1];
                     }
-                }
-                if (!found) {
-                    System.out.println("Book not available in the library");
-                }
-            }
-        }
+                    this.numAvailableBooks--;
 
-        //showing issued book
-        void showIssuedBook(){
-            System.out.println("The Issued books are: ");
-            for(String book : this.issuedBooks){
-                if(book == null){
-                    break;
-                }
-                System.out.println("* "+  book);
-            }
-        }
+                    //adding book into issued book
+                    this.issuedBooks[this.numIssuedBooks] = book;
+                    numIssuedBooks++;
 
-        //returning book
-        void returnBook(String book){
-            boolean identify = false;
-            for(int i = 0; i<this.issuedBooks.length;i++){
-                if(book.equals(this.issuedBooks[i])){
-                    System.out.println("thankyou for returning the book");
-                    for(int j = i; j < this.issuedBooks.length-1; j++){
-                        this.issuedBooks[j] = this.issuedBooks[j+1];
-                    }
-                    this.numIssuedBooks--;
-                    this.availableBooks[this.numAvailableBooks] = book;
-                    this.numAvailableBooks++;
+                    //notifying the book has been issued
+                    System.out.println(book + " has been issued");
 
-                    identify = true;
+                    //found the book?
+                    found = true;
                     break;
                 }
             }
-            if(!identify){
-                System.out.println("Book not belong to this library");
+            if(!found) {
+                System.out.println("Book not available in the library");
             }
         }
-
 }
 
 public class LibMS  {
     public static void main(String[] args) {
 
-        Library lib = new Library();
-        for (String book : Arrays.asList("Summer Love", "Saya", "karnali Blues", "Docha")) {
-            lib.addBook(book);
-        }
-        lib.showAvailableBooks();
-        lib.issueBook("Saya");
-        lib.issueBook("Summer Love");
-        lib.showAvailableBooks();
-        lib.showIssuedBook();
-        System.out.println();
-        lib.returnBook("Saya");
-        System.out.println();
-        lib.showIssuedBook();
-        lib.issueBook("Summer Love");
+    Library lib = new Library();
+    for (String book : Arrays.asList("Summer Love","Saya", "karnali Blues", "Docha"))
+        lib.addBook(book);
+    lib.showAvailableBooks();
+    lib.issueBook("Summer Love");
+    lib.issueBook("Summer Love");
 
 
     }

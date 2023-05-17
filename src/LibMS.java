@@ -109,6 +109,7 @@ public class LibMS  {
     lib.issueBook("Docha");
     lib.showIssuedBook();
     lib.returnBook("Saya");
+    lib.returnBook("Summer Love");
     lib.showAvailableBooks();
     System.out.println(lib.numIssuedBooks);
 

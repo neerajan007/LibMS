@@ -35,12 +35,12 @@ class Library{
             }
             if(!issued) {
                 boolean found = false;
-                for (String i : this.availableBooks){
-                    if (book .equals(i)) {
+                for (int i = 0; i < this.availableBooks.length; i++){
+                    if (book .equals(this.availableBooks[i])) {
                         System.out.println(book + " has been issued");
                         //remove the book from available books
-                        for (String j : this.availableBooks) {
-                            j = j+1;
+                        for (int j = i; j < this.availableBooks.length -1; j++) {
+                            this.availableBooks[j] = this.availableBooks[j+1];
                         }
                         this.numAvailableBooks--;
 
@@ -63,6 +63,7 @@ class Library{
 
         //showing issued book
         void showIssuedBook(){
+            System.out.println("The Issued books are: ");
             for(String book : this.issuedBooks){
                 if(book == null){
                     break;
@@ -74,19 +75,12 @@ class Library{
         //returning book
         void returnBook(String book){
             boolean identify = false;
-//            for(int i = 0; i<this.issuedBooks.length;i++){
-//                if(book == this.issuedBooks[i]){
-//                    System.out.println("thankyou for returning the book");
-//                    for(int j = i; j < this.issuedBooks.length-1; j++){
-//                        this.issuedBooks[j] = this.issuedBooks[j+1];
-//                    }
-            for(String i : this.issuedBooks) {
-                if(book.equals(i)) {
-                    System.out.println("thankyou");
-                    for (String j : this.issuedBooks) {
-                        j = j + 1;
+            for(int i = 0; i<this.issuedBooks.length;i++){
+                if(book.equals(this.issuedBooks[i])){
+                    System.out.println("thankyou for returning the book");
+                    for(int j = i; j < this.issuedBooks.length-1; j++){
+                        this.issuedBooks[j] = this.issuedBooks[j+1];
                     }
-
                     this.numIssuedBooks--;
                     this.availableBooks[this.numAvailableBooks] = book;
                     this.numAvailableBooks++;
@@ -109,14 +103,16 @@ public class LibMS  {
         for (String book : Arrays.asList("Summer Love", "Saya", "karnali Blues", "Docha")) {
             lib.addBook(book);
         }
-        System.out.println(lib.numAvailableBooks);
-        System.out.println(lib.numIssuedBooks);
-
+        lib.showAvailableBooks();
         lib.issueBook("Saya");
-        System.out.println(lib.numIssuedBooks);
-
         lib.issueBook("Summer Love");
-        System.out.println(lib.numIssuedBooks);
+        lib.showAvailableBooks();
+        lib.showIssuedBook();
+        System.out.println();
+        lib.returnBook("Saya");
+        System.out.println();
+        lib.showIssuedBook();
+        lib.issueBook("Summer Love");
 
 
     }

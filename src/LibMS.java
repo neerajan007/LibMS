@@ -16,27 +16,35 @@ class Library{
 
         //Showing available books
         void showAvailableBooks(){
+            System.out.println("The available books are: ");
             for (String book : this.availableBooks){
                 if(book == null){
                     continue;
                 }
-                System.out.println("*" + book);
+                System.out.println("* " + book);
             }
+        }
 
-
-    }
-
+        void issueBook(String book){
+            for(int i = 0; i<this.availableBooks.length; i++){
+                if(book == this.availableBooks[i]){
+                    System.out.println(book + " has been issued");
+                }
+            }
+        }
 }
 
 public class LibMS  {
     public static void main(String[] args) {
 
     Library lib = new Library();
-    for (String book : Arrays.asList
-            ("Summer Love","Saya", "karnali Blues", "Docha"))
+    for (String book : Arrays.asList("Summer Love","Saya", "karnali Blues", "Docha"))
         lib.addBook(book);
+    lib.showAvailableBooks();
+
+    lib.issueBook("Summer Love");
+
+
     }
-
-
 }
 

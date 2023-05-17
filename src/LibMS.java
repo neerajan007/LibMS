@@ -26,10 +26,30 @@ class Library{
         }
 
         void issueBook(String book){
+            boolean found = false;
             for(int i = 0; i<this.availableBooks.length; i++){
                 if(book == this.availableBooks[i]){
+
+                    //remove the book from available books
+                    for (int j = i; j<this.availableBooks.length-1; j++){
+                        this.availableBooks[j] =this.availableBooks[j+1];
+                    }
+                    this.numAvailableBooks--;
+
+                    //adding book into issued book
+                    this.issuedBooks[this.numIssuedBooks] = book;
+                    numIssuedBooks++;
+
+                    //notifying the book has been issued
                     System.out.println(book + " has been issued");
+
+                    //found the book?
+                    found = true;
+                    break;
                 }
+            }
+            if(!found) {
+                System.out.println("Book not available in the library");
             }
         }
 }
@@ -41,7 +61,7 @@ public class LibMS  {
     for (String book : Arrays.asList("Summer Love","Saya", "karnali Blues", "Docha"))
         lib.addBook(book);
     lib.showAvailableBooks();
-
+    lib.issueBook("Summer Love");
     lib.issueBook("Summer Love");
 
 
